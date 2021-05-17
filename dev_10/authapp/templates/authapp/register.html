@@ -1,0 +1,12 @@
+{% extends 'mainapp/index.html' %}
+{% block content %}
+<div>
+    <h2>Регистрация</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="form-control" value="Зарегистрироваться">
+
+    </form>
+</div>
+{% endblock %}

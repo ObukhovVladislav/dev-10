@@ -1,0 +1,15 @@
+{% extends 'mainapp/index.html' %}
+{% block content %}
+    <div class="login-form">
+        <h2 class="h2_center">Вход в систему</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary form-control" value="Войти">
+        </form>
+
+        <a class="btn btn-danger form-control" href="{% url 'auth:register' %}">
+            зарегистрироваться
+        </a>
+    </div>
+{% endblock %}
