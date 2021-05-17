@@ -13,7 +13,7 @@ def login(request):
             auth.login(request, form.get_user())
             return HttpResponseRedirect(reverse('main:index'))
     else:
-        form = LoginForm
+        form = LoginForm()
 
     context = {
         'page_title': 'Авторизация',
@@ -35,7 +35,7 @@ def register(request):
             form.save()
             return HttpResponseRedirect(reverse('auth:login'))
     else:
-        form = RegisterForm
+        form = RegisterForm()
 
     context = {
         'page_title': 'Регистрация',
