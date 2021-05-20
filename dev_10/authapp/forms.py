@@ -12,10 +12,11 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name',
+        fields = ('username',
                   'password1', 'password2', 'email')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for name, item in self.fields.items():
             item.widget.attrs['class'] = f'form-control {name}'
+            item.help_text = ''

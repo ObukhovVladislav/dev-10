@@ -1,4 +1,4 @@
-import django.contrib.auth as auth
+from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -11,35 +11,35 @@ def login(request):
         form = LoginForm(data=request.POST)
         if form.is_valid():
             auth.login(request, form.get_user())
-            return HttpResponseRedirect(reverse('main:index'))
+            return HttpResponseRedirect(reverse('mainapp:index'))
     else:
         form = LoginForm()
 
     context = {
-        'page_title': 'Авторизация',
+        'page_title': 'авторизация',
         'form': form,
-
     }
     return render(request, 'authapp/login.html', context)
 
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main:index'))
+    return HttpResponseRedirect(reverse('authapp:login'))
 
 
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST, request.FILES)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('auth:login'))
+            return HttpResponseRedirect(reverse('authapp:login'))
     else:
         form = RegisterForm()
 
     context = {
-        'page_title': 'Регистрация',
+        'page_title': 'регистрация',
         'form': form,
-
     }
     return render(request, 'authapp/register.html', context)
+
+
